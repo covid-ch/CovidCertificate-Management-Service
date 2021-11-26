@@ -385,6 +385,61 @@
                     </td>
                 </tr>
             </table>
+            <table th:case="'exceptional'" class="two-col-table">
+                <tr class="table-row">
+                    <th th:id="health-data-header-row">
+                        <p th:text="#{exceptional.title}" class="heading no-padding"></p>
+                        <p th:text="#{exceptional.title(${'en'})}" class="body-text-en"></p>
+                    </th>
+                    <th></th>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="table-row-padding">
+                        <p class="body-text no-padding" th:text="#{exceptional.disease.label}"></p>
+                        <p class="body-text-en" th:text="#{exceptional.disease.label(${'en'})}"></p>
+                    </td>
+                    <td class="body-text" th:text="#{exceptional.disease}"></td>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="table-row-padding">
+                        <p class="body-text no-padding" th:text="#{exceptional.type.label}"></p>
+                        <p class="body-text-en" th:text="#{exceptional.type.label(${'en'})}"></p>
+                    </td>
+                    <td class="body-text"
+                        th:text="#{exceptional.type.value}"></td>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="table-row-padding">
+                        <p class="body-text no-padding" th:text="#{exceptional.startdate.label}"></p>
+                        <p class="body-text-en" th:text="#{exceptional.startdate.label(${'en'})}"></p>
+                    </td>
+                    <td class="body-text"
+                        th:text="${data.getValidFromDate().format(dateTimeFormatter)}"></td>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="table-row-padding">
+                        <p class="body-text no-padding" th:text="#{exceptional.conducted.label}"></p>
+                        <p class="body-text-en" th:text="#{exceptional.conducted.label(${'en'})}"></p>
+                    </td>
+                    <td class="body-text"
+                        th:text="${data.getTestingCentreOrFacility()}"></td>
+                </tr>
+
+                <tr class="table-row">
+                    <td class="table-row-padding">
+                        <p class="body-text no-padding" th:text="#{exceptional.countryOfMedicalCertificate.label}"></p>
+                        <p class="body-text-en" th:text="#{exceptional.countryOfMedicalCertificate.label(${'en'})}"></p>
+                    </td>
+                    <td>
+                        <p class="body-text no-padding" th:text="${data.getCountryOfMedicalCertificate()}"></p>
+                        <p class="body-text-en" th:text="${data.getCountryOfMedicalCertificateEn()}"></p>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>
@@ -444,7 +499,8 @@
     <th:block th:unless="${isEvidence}">
         <p class="body-text-small" th:text="#{info.info1}"></p>
         <p class="body-text-small" th:unless="${showValidOnlyInSwitzerland}" th:text="#{info.info2}"></p>
-        <p class="body-text-small" th:if="${showValidOnlyInSwitzerland}" th:text="#{info.info3}"></p>
+        <p class="body-text-small" th:if="${showValidOnlyInSwitzerland && type == 'antibody'}" th:text="#{info.info3}"></p>
+        <p class="body-text-small" th:if="${showValidOnlyInSwitzerland && type == 'exceptional'}" th:text="#{info.info4}"></p>
         <p class="body-text-small" th:if="${type == 'recovery'}" th:utext="#{recovery.info}"></p>
         <p></p><!-- Keep this to separate the languages -->
         <p class="body-text-small-en" th:text="#{info.info1(${'en'})}"></p>
