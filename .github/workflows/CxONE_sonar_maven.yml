@@ -16,15 +16,7 @@ jobs:
       - run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 
-      - name: Checkmarx AST CLI Action
-        uses: Checkmarx/ast-github-action@main
-        with:
-          project_name: covid-ch/CovidCertificate-Management-Service
-          base_uri: ${{ secrets.BASE_URI }}
-          cx_tenant: ${{ secrets.TENANT }}
-          cx_client_id: ${{ secrets.CLIENT_ID }}
-          cx_client_secret: ${{ secrets.SECRET }}
-          additional_params: --report-format sonar --scan-types sast --sast-preset-name "ASA Premium"
+
       
 
       - name: Set up JDK 17
@@ -48,7 +40,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Analyze (sonar)
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DSonar.organization=covid-ch -Dsonar.projectKey=covid-ch_CovidCertificate-Management-Service -Dsonar.externalIssuesReportPaths=./cx_result_sonar.json -DskipTests
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DSonar.organization=covid-ch -Dsonar.projectKey=covid-ch_CovidCertificate-Management-Service -DskipTests
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
