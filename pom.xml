@@ -61,7 +61,7 @@
         <sonar.projectKey>covid-ch_CovidCertificate-Management-Service</sonar.projectKey>
         <sonar.organization>covid-ch</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.externalIssuesReportPaths>cx_result_sonar.json</sonar.externalIssuesReportPaths> 
+   
 
     </properties>
 
