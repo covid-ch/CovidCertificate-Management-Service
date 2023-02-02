@@ -49,7 +49,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Analyze (sonar)
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DSonar.organization=covid-ch -Dsonar.projectKey=covid-ch_CovidCertificate-Management-Service -DskipTests -Dsonar.externalIssuesReportPaths=./cx_result_sonar.json
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DSonar.organization=covid-ch -Dsonar.projectKey=covid-ch_CovidCertificate-Management-Service -DskipTests -Dsonar.externalIssuesReportPaths=cx_result_sonar.json
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
