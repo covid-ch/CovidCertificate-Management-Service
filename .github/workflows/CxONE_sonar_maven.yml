@@ -17,14 +17,14 @@ jobs:
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
           
       - name: Checkmarx AST CLI Action
-      - uses: Checkmarx/ast-github-action@main
+        uses: Checkmarx/ast-github-action@main
         with:
           project_name: covid-ch/CovidCertificate-Management-Service
           base_uri: ${{ secrets.BASE_URI }}
           cx_tenant: ${{ secrets.TENANT }}
           cx_client_id: ${{ secrets.CLIENT_ID }}
           cx_client_secret: ${{ secrets.SECRET }}
-          additional_params: --report-format sonar --scan-types sast --sast-preset-name "ASA Premium"
+          additional_params: --report-format sonar --scan-types sast --sast-preset-name "ASA Premium" --debug
 
       
 
