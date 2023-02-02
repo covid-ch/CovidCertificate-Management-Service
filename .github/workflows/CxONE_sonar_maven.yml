@@ -47,6 +47,10 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+          
+      - name: show CxONE results
+      - run: |
+          cat cx_result_sonar.json
 
       - name: Analyze (sonar)
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DSonar.organization=covid-ch -Dsonar.projectKey=covid-ch_CovidCertificate-Management-Service -DskipTests -Dsonar.externalIssuesReportPaths=cx_result_sonar.json
